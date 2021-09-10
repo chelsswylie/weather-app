@@ -1,3 +1,4 @@
+// 5 day forecast needs to be in increments of 3 hourly foreacsts
 import React, { Component } from "react";
 
 class Forecast extends Component {
@@ -11,3 +12,20 @@ class Forecast extends Component {
 }
 
 export default Forecast;
+
+// // read all entities - GET
+// fetch("https://fairestdb.p.rapidapi.com/friend/friendModel", {
+//   "method": "GET",
+//   "headers": {
+//     "x-rapidapi-host": "fairestdb.p.rapidapi.com",
+//     "x-rapidapi-key": "apikey"
+//   }
+// })
+// .then(response => response.json())
+// .then(response => {
+//   this.setState({
+//     friends: response
+//   })
+// })
+// .catch(err => { console.log(err);
+// });
