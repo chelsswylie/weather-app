@@ -12,11 +12,13 @@ function App() {
           <Navigation />
           <Switch>
             <Route path="/Current" component={Current} />
+          </Switch>
+          <Switch>
             <Route path="/Forecast" component={Forecast} />
           </Switch>
         </Router>
-        <Current />
-        <Forecast />
+        {/* <Current />
+        <Forecast /> */}
       </header>
     </div>
   );

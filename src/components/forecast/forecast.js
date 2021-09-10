@@ -1,4 +1,5 @@
 // 5 day forecast needs to be in increments of 3 hourly foreacsts
+// carousel?
 import React, { Component } from "react";
 
 class Forecast extends Component {

@@ -5,3 +5,11 @@
   background-color: orange;
   margin-bottom: 20%;
 }
+
+li {
+  display: inline;
+  margin: 5px;
+  font-family: Segoe UI;
+}
+
+/* add before and after click effects to change link colors */

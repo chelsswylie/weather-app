@@ -2,13 +2,16 @@
 
 import React, { Component } from "react";
 import "./current.css";
+import App from "../current-location/currentlocation";
 
 class Current extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   render() {
+    <App />;
     return (
       <div className="App" id="base">
         <h1>Hello World!</h1>
