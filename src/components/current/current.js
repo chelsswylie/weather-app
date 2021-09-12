@@ -1,8 +1,9 @@
 // This page needs to get current temperature at user's current location
-
-import React, { Component } from "react";
+// Class component
+import React, { useState, Component } from "react";
 import "./current.css";
 import App from "../current-location/currentlocation";
+import CurrentAPICall from "../currentAPI/currentAPI";
 
 class Current extends Component {
   constructor(props) {
@@ -12,29 +13,14 @@ class Current extends Component {
 
   render() {
     <App />;
+    <CurrentAPICall>{console.log("It works")}</CurrentAPICall>;
     return (
       <div className="App" id="base">
         <h1>Hello World!</h1>
+        {/* <CurrentAPI />; */}
       </div>
     );
   }
 }
 
 export default Current;
-
-// read all entities - how to get
-// fetch("https://fairestdb.p.rapidapi.com/friend/friendModel", {
-//   "method": "GET",
-//   "headers": {
-//     "x-rapidapi-host": "fairestdb.p.rapidapi.com",
-//     "x-rapidapi-key": "apikey"
-//   }
-// })
-// .then(response => response.json())
-// .then(response => {
-//   this.setState({
-//     friends: response
-//   })
-// })
-// .catch(err => { console.log(err);
-// });
