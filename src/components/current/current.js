@@ -2,25 +2,11 @@
 // Class component
 import React, { useState, Component } from "react";
 import "./current.css";
-import App from "../current-location/currentlocation";
-import CurrentAPICall from "../currentAPI/currentAPI";
 
-class Current extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+class Forecast extends Component {
   render() {
-    <App />;
-    <CurrentAPICall>{console.log("It works")}</CurrentAPICall>;
-    return (
-      <div className="App" id="base">
-        <h1>Hello World!</h1>
-        {/* <CurrentAPI />; */}
-      </div>
-    );
+    return <div className="App">{/* <h1>Hello Current!</h1> */}</div>;
   }
 }
 
-export default Current;
+export default Forecast;
