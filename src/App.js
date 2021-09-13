@@ -26,7 +26,7 @@ function App() {
       console.log({ latitude, longitude });
     });
 
-    // for Current below
+    // for Forecast below
     axios
       .get(`${forecastURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
       .then((data) => {
@@ -35,50 +35,14 @@ function App() {
         console.log(data.data);
         setCity(data.data.city.name);
         for (let i = 0; i < data.data.list.length; i++) {
-          setDate(data.data.list[i].dt_txt);
+          // const dates = data.data.list[i].dt_txt.split(" ");
+          // splice to get the date and time separated below
+          const date = data.data.list[i].dt_txt.split(" ", [1]);
+          // const time = data.data.list[i].dt_txt.split(" ", [0]);
+          setDate(date);
           setTime(data.data.list[i].dt_txt);
-          console.log("exactly what u think", data.data.list[i].dt_txt);
+          console.log(date);
         }
-        // console.log(data.data.list[0].dt_txt);
-        // console.log(data.data.list[1].dt_txt);
-        // console.log(data.data.list[2].dt_txt);
-        // console.log(data.data.list[3].dt_txt);
-        // console.log(data.data.list[4].dt_txt);
-        // console.log(data.data.list[5].dt_txt);
-        // console.log(data.data.list[6].dt_txt);
-        // console.log(data.data.list[7].dt_txt);
-        // console.log(data.data.list[8].dt_txt);
-        // console.log(data.data.list[9].dt_txt);
-        // console.log(data.data.list[10].dt_txt);
-        // console.log(data.data.list[11].dt_txt);
-        // console.log(data.data.list[12].dt_txt);
-        // console.log(data.data.list[13].dt_txt);
-        // console.log(data.data.list[14].dt_txt);
-        // console.log(data.data.list[15].dt_txt);
-        // console.log(data.data.list[16].dt_txt);
-        // console.log(data.data.list[17].dt_txt);
-        // console.log(data.data.list[18].dt_txt);
-        // console.log(data.data.list[19].dt_txt);
-        // console.log(data.data.list[20].dt_txt);
-        // console.log(data.data.list[21].dt_txt);
-        // console.log(data.data.list[22].dt_txt);
-        // console.log(data.data.list[23].dt_txt);
-        // console.log(data.data.list[24].dt_txt);
-        // console.log(data.data.list[25].dt_txt);
-        // console.log(data.data.list[26].dt_txt);
-        // console.log(data.data.list[27].dt_txt);
-        // console.log(data.data.list[28].dt_txt);
-        // console.log(data.data.list[29].dt_txt);
-        // console.log(data.data.list[30].dt_txt);
-        // console.log(data.data.list[31].dt_txt);
-        // console.log(data.data.list[32].dt_txt);
-        // console.log(data.data.list[33].dt_txt);
-        // console.log(data.data.list[34].dt_txt);
-        // console.log(data.data.list[35].dt_txt);
-        // console.log(data.data.list[36].dt_txt);
-        // console.log(data.data.list[37].dt_txt);
-        // console.log(data.data.list[38].dt_txt);
-        // console.log(data.data.list[39].dt_txt);
       });
   }, [latitude, longitude]);
 
@@ -111,11 +75,134 @@ function App() {
         </Switch>
         <Switch>
           <Route path="/Forecast" component={Forecast}>
-            City: {city}
-            <br />
-            Date: {date}
-            <br />
-            Time: {time}
+            <div class="grid-container">
+              {/* this should be a for loop */}
+              <div class="grid-item">{date}</div>
+              <div class="grid-item">{date}</div>
+              <div class="grid-item">{date}</div>
+              <div class="grid-item">{date}</div>
+              <div class="grid-item">{date}</div>
+              <div class="grid-item">
+                <div class="time">Midnight</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">Midnight</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">Midnight</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">Midnight</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">Midnight</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">12:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">12:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">12:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">12:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">12:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">3:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">6:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+              <div class="grid-item">
+                <div class="time">9:00</div>
+              </div>
+            </div>
           </Route>
         </Switch>
       </Router>
