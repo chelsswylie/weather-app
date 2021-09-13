@@ -28,20 +28,19 @@ function App() {
 
     // for Forecast below
     axios
-      .get(`${forecastURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
+      .get(
+        `${forecastURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`
+      )
       .then((data) => {
         // switch statement to role between the individual results below to get date and time?
         // for loop?
         console.log(data.data);
         setCity(data.data.city.name);
         for (let i = 0; i < data.data.list.length; i++) {
-          // const dates = data.data.list[i].dt_txt.split(" ");
-          // splice to get the date and time separated below
           const date = data.data.list[i].dt_txt.split(" ", [1]);
-          // const time = data.data.list[i].dt_txt.split(" ", [0]);
           setDate(date);
           setTime(data.data.list[i].dt_txt);
-          console.log(date);
+          console.log("this is the date", date[i]);
         }
       });
   }, [latitude, longitude]);
@@ -55,7 +54,9 @@ function App() {
 
     // for Current below
     axios
-      .get(`${currentURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
+      .get(
+        `${currentURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`
+      )
       .then((data) => {
         setTemp(data.data.main.temp);
         setCity(data.data.name);
@@ -63,16 +64,16 @@ function App() {
   }, [latitude, longitude]);
 
   return (
+    // Starts with current JSX
     <div className="App">
       <Router>
         <Navigation />
         <Switch>
           <Route path="/Current" component={Current}>
-            City: {city}
-            <br></br>
-            Currently, the weather outside is: {temp}
+            In the City of {city}, it is currently {temp} degree Fahrenheit
           </Route>
         </Switch>
+        {/* Changes to Forecast JSX */}
         <Switch>
           <Route path="/Forecast" component={Forecast}>
             <div class="grid-container">
