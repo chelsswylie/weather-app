@@ -12,21 +12,17 @@ const currentURL = "https://api.openweathermap.org/data/2.5/weather";
 const forecastURL = "https://api.openweathermap.org/data/2.5/forecast";
 const API_KEY = "9e4064c990354f0ca0608f40c85284dc";
 function App() {
-  const [allData, setAllData] = useState([]);
+  // const [allData, setAllData] = useState([]);
   const [dailyDataOne, setDailyDataOne] = useState([]);
-  const [dailyDataTwo, setDailyDataTwo] = useState([]);
-  const [dailyDataThree, setDailyDataThree] = useState([]);
-  const [dailyDataFour, setDailyDataFour] = useState([]);
-  const [dailyDataFive, setDailyDataFive] = useState([]);
-  const [dailyDataSix, setDailyDataSix] = useState([]);
-  const [dailyDataSeven, setDailyDataSeven] = useState([]);
-  const [dailyDataEight, setDailyDataEight] = useState([]);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState(null);
   const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
+  const table = document.createElement("table");
+  const header = table.createTHead().insertRow();
+  const body = document.createElement("tbody");
+  // const [time, setTime] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -40,65 +36,61 @@ function App() {
         `${forecastURL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`
       )
       .then((data) => {
-        console.log(data.data);
-        console.log(data.data.list[0].main.temp);
-        // const dailyOne = data.data.list.filter((day) => {
-        //   return day.dt_txt.includes("00:00:00");
-        // });
-        const oneDaily = [
-          data.data.list[0].main.temp,
-          data.data.list[8].main.temp,
-          data.data.list[16].main.temp,
-          data.data.list[24].main.temp,
-          data.data.list[32].main.temp,
-        ];
-        for (let i = 0; i < oneDaily.length; i++) {
-          console.log("one", oneDaily[i]);
-          setDailyDataOne(oneDaily);
-          return oneDaily[i];
-        }
-
-        const twoDaily = [
-          data.data.list[1].main.temp,
-          data.data.list[9].main.temp,
-          data.data.list[17].main.temp,
-          data.data.list[25].main.temp,
-          data.data.list[40].main.temp,
-        ];
-        for (let i = 0; i < twoDaily.length; i++) {
-          console.log("two", twoDaily[i]);
-          setDailyDataTwo(twoDaily);
-          return twoDaily[i];
-        }
-
-        const threeDaily = [
-          data.data.list[2].main.temp,
-          data.data.list[10].main.temp,
-          data.data.list[18].main.temp,
-          data.data.list[26].main.temp,
-          data.data.list[40].main.temp,
-        ];
-        for (let i = 0; i < threeDaily.length; i++) {
-          console.log("three", threeDaily[i]);
-          setDailyDataThree(threeDaily);
-          return threeDaily[i];
-        }
-
-        setDailyDataFour(data.data.list[3].main.temp);
-        setDailyDataFive(data.data.list[4].main.temp);
-        setDailyDataSix(data.data.list[5].main.temp);
-        setDailyDataSeven(data.data.list[6].main.temp);
-        setDailyDataEight(data.data.list[7].main.temp);
         setCity(data.data.city.name);
+        header.insertCell(0).innerText = "Time";
+        header.insertCell(1).innerText = "00:00:00";
+        header.insertCell(2).innerText = "03:00:00";
+        header.insertCell(3).innerText = "06:00:00";
+        header.insertCell(4).innerText = "09:00:00";
+        header.insertCell(5).innerText = "12:00:00";
+        header.insertCell(6).innerText = "15:00:00";
+        header.insertCell(7).innerText = "18:00:00";
+        header.insertCell(8).innerText = "21:00:00";
 
-        // below splits the string result of the data and time
-        for (let i = 0; i < 5; i++) {
-          const date = data.data.list[i].dt_txt.split(" ", [1]);
-          setDate(date);
-          // const date = dateSplit.map(day => {let i = new Object()});
-          // setTime(data.data.list[i].dt_txt);
-          console.log("this is the date", date[i]);
-        }
+        table.appendChild(body);
+        console.log("array1", data.data);
+        console.log("array2", data.data.list[0].dt_txt);
+        const days = (day) => {
+          for (let i = 0; i < day.length; i++) {
+            const date = day[i];
+            setDate(date.dt_txt);
+            console.log("date text", date.dt_txt);
+            return [day[i]];
+          }
+        };
+
+        const array1 = [data.data];
+        const array2 = [days];
+
+        array1.forEach((result) => {
+          array2.forEach((day) => {
+            const data = day[result];
+            console.log("the new", array1);
+
+            if (!data) {
+              return;
+            }
+
+            const row = body.insertRow();
+
+            row.insertCell(0).innerText = data.data.list.dt_txt;
+          });
+        });
+
+        document.getElementById("weather").appendChild(table);
+
+        // const oneDaily = [
+        //   data.data.list[0].main.temp,
+        //   data.data.list[8].main.temp,
+        //   data.data.list[16].main.temp,
+        //   data.data.list[24].main.temp,
+        //   data.data.list[32].main.temp,
+        // ];
+        // for (let i = 0; i < oneDaily.length; i++) {
+        //   console.log("one", oneDaily[i]);
+        //   setDailyDataOne(oneDaily);
+        //   return oneDaily[i];
+        // }
         // setDate(date);
       });
   }, [latitude, longitude]);
@@ -134,8 +126,8 @@ function App() {
         {/* Changes to Forecast JSX */}
         <Switch>
           <Route path="/Forecast" component={Forecast}>
-            <div class="grid-container">
-              {/* this should be a for loop */}
+            <div id="weather"></div>
+            {/* <div class="grid-container">
               <div class="grid-item">{date}</div>
               <div class="grid-item">{date}</div>
               <div class="grid-item">{date}</div>
@@ -275,7 +267,7 @@ function App() {
               <div class="grid-item">
                 <div class="time">9:00</div>
               </div>
-            </div>
+            </div> */}
           </Route>
         </Switch>
       </Router>
