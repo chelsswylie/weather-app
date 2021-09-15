@@ -1,15 +1,18 @@
 #Test {
   list-style-type: none;
-  /* height: 10%; */
+  height: 10vh;
   width: 100%;
-  background-color: orange;
-  margin-bottom: 20%;
+  /* margin-bottom: 20%; */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 li {
-  display: inline;
+  /* display: inline; */
   margin: 5px;
   font-family: Segoe UI;
+  font-size: 25px;
+  text-align: start;
 }
 
 /* add before and after click effects to change link colors */

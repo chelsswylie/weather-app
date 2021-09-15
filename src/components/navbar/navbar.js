@@ -7,7 +7,7 @@ const Navigation = () => {
     <div id="Test">
       <li>
         <Link id="pages" to="/Current">
-          Current
+          Weather for today
         </Link>
       </li>
       <li>
